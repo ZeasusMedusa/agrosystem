@@ -1,0 +1,24 @@
+<!-- processing.html -->
+<div id="progress">Обработка...</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+function updateProgress(taskId) {
+    $.ajax({
+        url: '/check-task-status/' + taskId,
+        success: function(response) {
+            if (response.status === 'SUCCESS') {
+                $('#progress').text('Готово!');
+                // Редирект или обновление страницы
+            } else {
+                // Обновление текста или индикатора прогресса
+                $('#progress').text('Обработка: ' + response.current);
+                setTimeout(function() {
+                    updateProgress(taskId);
+                }, 2000);  // Проверка каждые 2 секунды
+            }
+        }
+    });
+}
+
+updateProgress('{{ task_id }}');
+</script>

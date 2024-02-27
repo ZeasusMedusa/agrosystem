@@ -1,0 +1,7 @@
+agrosystems/utils_back/*
+agrosystems/utils/map_creator2.py
+projects/*
+!projects/.gitkeep
+agrosystems/static/models/*
+!agrosystems/static/models/.gitkeep
+

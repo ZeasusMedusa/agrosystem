@@ -1,0 +1,81 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    padding-top: 50px; /* Добавьте отступ вверху, чтобы содержимое не перекрывалось навигационной панелью */
+}
+
+.navbar {
+    background-color: #333; /* Темно-серый фон */
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Тень для панели */
+    z-index: 1000; /* Убедитесь, что navbar будет поверх других элементов */
+    height: 50px; /* Задаем высоту для nav bar */
+}
+
+.navbar a {
+    color: #f2f2f2; /* Светло-серый текст */
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.sidebar {
+    width: 250px;
+    height: calc(100% - 50px); /* Уменьшаем высоту на высоту navbar */
+    overflow-y: auto;
+    position: fixed;
+    left: 0;
+    top: 50px; /* Смещаем sidebar вниз на высоту navbar */
+    background-color: #333;
+    color: #f2f2f2; /* Светло-серый текст */
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+    z-index: 500; /* Убедитесь, что sidebar ниже navbar */
+}
+
+.sidebar-left {
+    position: fixed;
+    top: 50px;
+    right: 0; /* Изменено с left на right */
+    width: 250px;
+    height: calc(100% - 50px);
+    background-color: #333;
+    color: #f2f2f2; /* Светло-серый текст */
+    overflow-y: auto;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+    z-index: 500;
+  }
+  
+
+#map {
+    height: calc(100% - 50px); /* Уменьшаем высоту на высоту navbar */
+    width: calc(100% - 290px);
+    position: fixed;
+    right: 250px;
+    top: 50px; /* Смещаем карту вниз на высоту navbar */
+}
+
+.object-item {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 5px;
+}
+
+.object-title {
+    margin: 0;
+    color: #333;
+    font-size: 16px;
+}
+
+.object-info {
+    font-size: 14px;
+    color: #666;
+}

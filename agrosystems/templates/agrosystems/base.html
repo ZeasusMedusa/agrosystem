@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% block head %}
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AgroSystem Demo Interface</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    {% endblock %}
+
+</head>
+
+<body>
+    <div class="navbar">
+        <div>
+            <a href="/">Dashboard</a>
+            <a href="#about">About</a>
+            <a href="{% url 'user_profile' %}">Personal account</a>
+        </div>
+        <div>
+            <button id="addProjectButton" style="padding: 8px 16px; font-size: 17px; cursor: pointer">
+                + Add Project
+            </button>
+        </div>
+    </div>
+
+    <!-- Модальное окно -->
+    <div id="myModal" class="modal">
+        <!-- Содержимое модального окна -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Add Project</h2>
+            <form id="addProjectForm" action="{% url 'add_project' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="text" placeholder="Project name" name="project_name" required />
+                <select name="model_type" required>
+                    {% for model in models %}
+                    <option value="{{ model }}">{{ model }}</option>
+                    {% endfor %}
+                </select>
+                <input type="file" name="images" multiple required />
+                <input type="number" name="hfov" value="67" placeholder="HFOV" required />
+                <input type="submit" value="Create a project" />
+            </form>
+        </div>
+    </div>
+    {% block content %}<!-- default content text (typically empty) -->{% endblock %}
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+
+</html>

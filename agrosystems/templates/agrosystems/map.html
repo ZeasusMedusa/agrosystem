@@ -1,0 +1,34 @@
+{% extends "agrosystems/base.html" %} {% load static %} {% block head %}
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Map View</title>
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+/>
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script src="https://unpkg.com/georaster"></script>
+<script src="https://unpkg.com/georaster-layer-for-leaflet"></script>
+<script src="https://unpkg.com/chroma-js"></script>
+<link rel="stylesheet" href="{% static 'css/map.css' %}" />
+
+{% endblock %} {% block content %}
+<div class="sidebar">
+  <h2>Objects</h2>
+  <div id="object-list"></div>
+</div>
+
+<div id="map"></div>
+<div class="sidebar-left">
+  <div id="info-list"></div>
+</div>
+<script>
+          // Получение кнопки, которая открывает модальное окно
+  document.getElementById("addProjectButton").style.display = "none";;
+  // Определяем глобальную переменную внутри скрипта вашего HTML файла
+  var objectDetails = {{ object_details | safe }};
+  var geoTIFFUrl = "{{ settings.MEDIA_URL }}{{ project.output_path|cut:settings.MEDIA_ROOT }}";
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.7.2/proj4.js"></script>
+<script src="/static/js/map.js"></script>
+{% endblock %}

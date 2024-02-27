@@ -1,0 +1,203 @@
+/* Основные стили для страницы */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+    background-color: #1a1a1a; /* Темный фон */
+    color: #fff; /* Белый текст */
+}
+
+/* Стили для навигационной панели */
+.navbar {
+    background-color: #333; /* Темно-серый фон */
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Тень для панели */
+}
+
+.navbar a {
+    color: #f2f2f2; /* Светло-серый текст */
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+/* Стили для основного содержимого */
+.main-content {
+    margin-top: 50px; /* Отступ сверху из-за навбара */
+    padding: 20px;
+}
+
+/* Стили для блоков проекта */
+.project {
+    background-color: #262626; /* Еще более темный серый для фона проекта */
+    border: 1px solid #333;
+    padding: 20px;
+    margin-bottom: 10px;
+}
+
+.project h3 {
+    color: #4CAF50; /* Зеленый цвет для заголовков */
+}
+
+.project p {
+    margin: 5px 0;
+}
+
+/* Стили для кнопок действий в проекте */
+.project-actions button {
+    background-color: #4CAF50; /* Зеленый фон */
+    border: none;
+    color: white;
+    padding: 10px 15px;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+/* Modal styles */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 2; /* Above everything */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.5); /* Black background with opacity */
+}
+
+.modal-content {
+    background-color: #292929; /* Lighter background for content */
+    margin: 10% auto; /* Top margin and centering */
+    padding: 20px;
+    border: 1px solid #444;
+    border-radius: 8px; /* Rounded corners */
+    width: 90%; /* Width */
+    max-width: 500px; /* Maximum width */
+}
+
+.close {
+    color: #aaaaaa; /* Light gray color */
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    transition: color 0.3s; /* Smooth transition for hover effects */
+}
+
+.close:hover, .close:focus {
+    color: #ffffff; /* White color on hover/focus */
+    cursor: pointer;
+}
+
+/* Input and Select Styles */
+input[type=text], select, input[type=number], input[type=file] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: #333;
+    color: #fff;
+}
+
+/* Button Styles */
+input[type=submit] {
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s; /* Smooth transition for hover effects */
+}
+
+input[type=submit]:hover {
+    background-color: #45a049;
+}
+
+#userDetails p {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+#userActions {
+    margin-top: 20px;
+}
+
+#userActions form {
+    margin-bottom: 15px;
+}
+
+#userActions form:last-child {
+    margin-bottom: 0;
+}
+
+#userActions button {
+    background: #5cb85c;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+#userActions button:hover {
+    background: #4cae4c;
+}
+
+#userActions .form-group {
+    margin-bottom: 15px;
+}
+
+#userActions label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+#userActions input[type="password"] {
+    width: 20%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+#userActions input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background: #5cb85c;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+#userActions input[type="submit"]:hover {
+    background: #4cae4c;
+}
+
+.delete-account {
+    background: #d9534f !important;
+}
+
+.delete-account:hover {
+    background: #c9302c !important;
+}
