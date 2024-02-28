@@ -1,6 +1,5 @@
 import cv2
 from ultralytics import YOLO
-import os
 from collections import defaultdict, namedtuple
 
 # Используем namedtuple для определения структуры данных объекта с его характеристиками.

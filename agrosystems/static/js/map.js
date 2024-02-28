@@ -11,6 +11,9 @@ L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/
 function populateSidebar(objects) {
     var list = document.getElementById('object-list');
     list.innerHTML = ''; // Очистить список перед заполнением
+    if (objects.length === 0){
+        list.innerHTML = '<p>No object details available for this project.</p>';
+    }
 
     var groupedObjects = {};
     objects.forEach(function(detail) {

@@ -14,6 +14,8 @@ from django.contrib.auth.views import PasswordChangeView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from pathlib import Path
 from django.contrib.auth import logout
+from django.utils.timezone import now
+import random
 from celery.result import AsyncResult
 import os
 import shutil
@@ -88,7 +90,8 @@ def save_objects_to_db(project_id, objects_data):
 def check_task_status(request, task_id):
     task_result = AsyncResult(task_id)
     if task_result.ready():
-        if task_result.successful():
+        status = task_result.result[2]
+        if status != "Error":
             # Получаем результат выполнения задачи
             result = task_result.result
 
@@ -96,7 +99,7 @@ def check_task_status(request, task_id):
             task = CeleryTask.objects.get(task_id=task_id)
             project = Project.objects.get(id=task.project_id)
             # Обновляем статус проекта на 'Complete'
-            project.status = "Complete"
+            project.status = status
             project.save()
             objects_data = result
             save_objects_to_db(project.id, objects_data)
@@ -106,7 +109,7 @@ def check_task_status(request, task_id):
             # В случае ошибки обновляем статус проекта на 'Error'
             task = CeleryTask.objects.get(task_id=task_id)
             project = Project.objects.get(id=task.project_id)
-            project.status = "Error"
+            project.status = status
             project.save()
 
             return JsonResponse({"status": "Error"})
@@ -170,10 +173,15 @@ def add_project(request):
             images = request.FILES.getlist("images")  # Получаем список файлов
             hfov = form.cleaned_data["hfov"]
             user = request.user
-            # Создаем директорию для файлов проекта, если она еще не существует
-            project_directory = os.path.join(
-                settings.MEDIA_ROOT, f"projects/{user.id}/{project_name}"
-            )
+            # Проверяем, существует ли уже проект с таким именем для данного пользователя
+            existing_project = Project.objects.filter(user=user, project_name=project_name).exists()
+            if existing_project:
+                # Добавляем к имени проекта уникальный суффикс
+                unique_suffix = now().strftime("%Y%m%d%H%M%S") + str(random.randint(100, 999))
+                project_name = f"{project_name}_{unique_suffix}"
+
+            # Создаем директорию для файлов проекта
+            project_directory = os.path.join(settings.MEDIA_ROOT, f"projects/{user.id}/{project_name}")
             os.makedirs(project_directory, exist_ok=True)
 
             # Определяем путь к модели
@@ -215,6 +223,7 @@ def add_project(request):
 
 @login_required
 def delete_project(request, project_id):
+    print("test")
     # Находим и удаляем все связанные ObjectDetail
     ObjectDetail.objects.filter(project_id=project_id).delete()
 
@@ -262,7 +271,7 @@ def view_map(request, project_id):
             "image_path": obj.image_path,
         }
         for obj in object_details
-    ]
+    ] if object_details.exists() else []
 
     context = {
         "settings": settings,

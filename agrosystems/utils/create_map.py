@@ -1,4 +1,3 @@
-from .gps_calculate import ImageGPSCoordinateCalculator
 from .map_creator import GeoTIFFCreator
 from .obj_counter import process_images
 
