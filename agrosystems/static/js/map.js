@@ -17,9 +17,9 @@ function populateSidebar(objects) {
 
     var groupedObjects = {};
     objects.forEach(function(detail) {
-        if (detail.class_name === "Gryadka") {
-            return;
-        }
+        // if (detail.class_name === "Gryadka") {
+        //     return;
+        // }
         if (!groupedObjects[detail.class_name]) {
             groupedObjects[detail.class_name] = [];
         }

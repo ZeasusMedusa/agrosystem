@@ -2,7 +2,7 @@ function deleteProject(projectId) {
     // Получаем CSRF-токен из куки
     const csrftoken = getCookie('csrftoken');
 
-    fetch(`/delete-project/${projectId}`, {
+    fetch(`/delete-project/${projectId}/`, {
         method: 'DELETE',
         headers: {
             'X-CSRFToken': csrftoken  // Добавляем CSRF-токен в заголовок запроса
@@ -47,7 +47,7 @@ function updateProjects() {
             projects.forEach(function(project) {
                 var buttons = '';
                 if (project.status === 'Complete') {
-                    var viewMapUrl = `/view-map/${project.id}`; // Предполагается, что у вас есть такой URL-паттерн
+                    var viewMapUrl = `/view-map/${project.id}/`; // Предполагается, что у вас есть такой URL-паттерн
                     buttons = `
                         <div class="project-actions">
                             <button onclick="location.href='${viewMapUrl}'">View Map</button>
