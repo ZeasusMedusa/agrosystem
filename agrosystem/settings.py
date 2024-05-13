@@ -131,3 +131,5 @@ CELERY_BROKER_URL = 'redis://localhost:6379/0'
 
 # Опционально: использование Redis для результатов задач
 CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
+
+DATA_UPLOAD_MAX_NUMBER_FILES = 10000
